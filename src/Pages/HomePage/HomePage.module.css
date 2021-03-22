@@ -1,3 +1,5 @@
+
+
 .slideshow { 
     position: fixed;
     width: 100%;
@@ -23,6 +25,29 @@
     opacity: 0;
     z-index: -1;
     animation: imageAnimation 50s linear infinite; 
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+}
+
+.content{
+    display: flex;
+    flex-wrap: wrap;
+    width: 41%;
+    justify-content: center;
+}
+
+.center{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+.header{
+    display: flex;
+    height: 100px;
+    justify-content: center;
 }
   
 .slideshow li:nth-child(1) { 
