@@ -10,9 +10,9 @@ class HomePage extends Component{
         this.state = {
           boxes: Array(32).fill(null),
           codeArray: Array(4).fill(null),
-          inputColor: ''
+          isCorrect: false
         };
-      }
+    }
 
     componentDidMount() {
         this.setNewCode()
@@ -25,20 +25,36 @@ class HomePage extends Component{
         }
         this.setState({codeArray: tempArray})
         //console.log(this.state.codeArray)
-    }  
+    }
+
+    disableBoxes() {
+        
+    }
 
     handleChange = (e) => {            
         let tempArray = [...this.state.boxes]        
         tempArray[e.target.id] = parseInt(e.target.value);
-        this.setState({boxes: tempArray}, ()=> {this.runTest(e.target.id)})
+        this.setState({boxes: tempArray}, ()=> {
+            const found = this.state.boxes.some(r=> this.state.codeArray.indexOf(r) >= 0)
+            console.log(found)
+            console.log(this.state.codeArray[e.target.id] + " code array value")
+            if(found){
+                e.target.style.backgroundColor = "red"
+                if (this.state.codeArray[e.target.id] === parseInt(e.target.value)){
+                    e.target.style.backgroundColor = "green"
+                }                
+            }
+            
+        })
         console.log(this.state.codeArray)
+        console.log(e.target.id + " id")
+        console.log(e.target.value + " value")
     }
 
     runTest(index){
+        let tempArray = [this.state.boxes]
         console.log(this.state.boxes[index])
-        if (this.state.boxes.includes(this.state.codeArray[0]) || this.state.boxes.includes(this.state.codeArray[1]) || this.state.boxes.includes(this.state.codeArray[2]) || this.state.boxes.includes(this.state.codeArray[3])){
-            
-        }
+        console.log(tempArray)        
     }
     
 
@@ -59,7 +75,7 @@ class HomePage extends Component{
                 </div>
                 <div className={classes.container}>
                     <div className={classes.content}>Spacer</div>
-                    <CodeBoard color={this.state.inputColor} board={this.state.boxes} handleChange={this.handleChange}/>
+                    <CodeBoard correct={this.state.isCorrect} board={this.state.boxes} handleChange={this.handleChange}/>
                     <div className={classes.content}>Spacer</div>               
                 </div>             
             </Auxillary>

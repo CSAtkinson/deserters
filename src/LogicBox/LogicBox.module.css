@@ -11,6 +11,14 @@
     justify-content: center;
     margin: 2px;
     border-radius: 15px;
+    font-size: 3em;
+    text-align: center;
+    font-weight: bold;
+    
+}
+
+.content:focus{
+    outline: none;
 }
 
 .center{

@@ -1,16 +1,30 @@
-import React from 'react'
+import React, { Component, useState } from 'react'
 import LogicBox from '../LogicBox/LogicBox'
 import classes from './CodeBoard.module.css'
 
-const CodeBoard = ({board, handleChange, color}) => {   
+class CodeBoard extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            bgColor: ''
+        };
+      }
 
-    return (
-        <div className={classes.center}>
-            {board.map((input, i) => (
-                <LogicBox color={color} key={i} id={i} change={handleChange}/>
-            ))}                
-        </div>   
     
-    );
+
+    render(){
+        return(
+            <div className={classes.center}>
+            {this.props.board.map((input, i) => (
+                <LogicBox isCorrect={this.props.correct} color={this.state.bgColor} key={i} id={i} change={this.props.handleChange}/>
+            ))}
+            </div>   
+        )
+    }
+    
+
+   
+
+    
 }
 export default CodeBoard
